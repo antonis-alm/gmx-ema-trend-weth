@@ -6,40 +6,40 @@
   "positioning": {
     "direction": "long_only",
     "max_concurrent_positions": 1,
-    "leverage": "1"
+    "leverage": "10"
   },
   "signal": {
-    "timeframe": "1h",
-    "entry": "EMA(20) crosses above EMA(50) on confirmed candle close",
-    "exit": "EMA(20) crosses below EMA(50) on confirmed candle close",
+    "timeframe": "1m",
+    "entry": "Fast EMA momentum entry",
+    "exit": "Fast EMA momentum exit",
     "indicators": [
       {
         "name": "ema",
-        "period": 20
+        "period": 3
       },
       {
         "name": "ema",
-        "period": 50
+        "period": 8
       }
     ]
   },
   "execution": {
-    "evaluate_on_candle_close_only": true,
-    "allow_intrabar_entries": false,
+    "evaluate_on_candle_close_only": false,
+    "allow_intrabar_entries": true,
     "allow_short": false
   },
   "sizing": {
-    "position_size_pct_of_available_collateral": "95"
+    "position_size_pct_of_available_collateral": "100"
   },
   "risk": {
-    "max_slippage_bps": "40",
-    "min_order_notional_usd": "2",
+    "max_slippage_bps": "150",
+    "min_order_notional_usd": "1",
     "close_on_bear_cross": true
   },
   "teardown": {
     "policy": "close_open_long_if_any"
   },
-  "force_action": "",
+  "force_action": "open_long",
   "token_funding": [
     {
       "symbol": "USDC",
