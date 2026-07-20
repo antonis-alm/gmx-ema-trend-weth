@@ -1,0 +1,10 @@
+[project]
+name = "g_m_x_e_m_a_trend_w_e_t_h"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "almanak>=2.20.0",
+]
+
+[tool.almanak.run]
+interval = 60

@@ -1,0 +1,62 @@
+{
+  "chain": "arbitrum",
+  "protocol": "gmx_v2",
+  "market": "ETH/USD",
+  "collateral_token": "USDC",
+  "positioning": {
+    "direction": "long_only",
+    "max_concurrent_positions": 1,
+    "leverage": "1"
+  },
+  "signal": {
+    "timeframe": "1h",
+    "entry": "EMA(20) crosses above EMA(50) on confirmed candle close",
+    "exit": "EMA(20) crosses below EMA(50) on confirmed candle close",
+    "indicators": [
+      {
+        "name": "ema",
+        "period": 20
+      },
+      {
+        "name": "ema",
+        "period": 50
+      }
+    ]
+  },
+  "execution": {
+    "evaluate_on_candle_close_only": true,
+    "allow_intrabar_entries": false,
+    "allow_short": false
+  },
+  "sizing": {
+    "position_size_pct_of_available_collateral": "95"
+  },
+  "risk": {
+    "max_slippage_bps": "40",
+    "min_order_notional_usd": "2",
+    "close_on_bear_cross": true
+  },
+  "teardown": {
+    "policy": "close_open_long_if_any"
+  },
+  "force_action": "",
+  "token_funding": [
+    {
+      "symbol": "USDC",
+      "address": "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+      "amount": "5",
+      "amount_type": "usd"
+    },
+    {
+      "symbol": "WETH",
+      "address": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+      "amount": "5",
+      "amount_type": "usd"
+    }
+  ],
+  "anvil_funding": {
+    "ETH": 5,
+    "USDC": 10000,
+    "WETH": 1
+  }
+}
