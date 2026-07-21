@@ -210,7 +210,7 @@ class GMXEMATrendWETHStrategy(IntentStrategy):
             market=self.market,
             collateral_token=self.collateral_token,
             is_long=True,
-            size_usd=self._open_size_usd,
+            size_usd=None,
             max_slippage=self.max_slippage_bps / Decimal("10000"),
             protocol=self.protocol,
         )
@@ -326,7 +326,7 @@ class GMXEMATrendWETHStrategy(IntentStrategy):
                 market=self.market,
                 collateral_token=self.collateral_token,
                 is_long=True,
-                size_usd=self._open_size_usd,
+                size_usd=None,
                 max_slippage=slippage,
                 protocol=self.protocol,
             )
