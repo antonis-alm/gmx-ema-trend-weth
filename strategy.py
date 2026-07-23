@@ -206,11 +206,12 @@ class GMXEMATrendWETHStrategy(IntentStrategy):
         )
 
     def _build_close_long_intent(self, *, reason: str) -> Intent:
+        close_size_usd = self._open_size_usd if self._open_size_usd and self._open_size_usd > 0 else None
         return Intent.perp_close(
             market=self.market,
             collateral_token=self.collateral_token,
             is_long=True,
-            size_usd=None,
+            size_usd=close_size_usd,
             max_slippage=self.max_slippage_bps / Decimal("10000"),
             protocol=self.protocol,
         )
@@ -321,12 +322,14 @@ class GMXEMATrendWETHStrategy(IntentStrategy):
         hard = max(soft, Decimal("0.02"))
         slippage = hard if mode == TeardownMode.HARD else soft
 
+        close_size_usd = self._open_size_usd if self._open_size_usd and self._open_size_usd > 0 else None
+
         return [
             Intent.perp_close(
                 market=self.market,
                 collateral_token=self.collateral_token,
                 is_long=True,
-                size_usd=None,
+                size_usd=close_size_usd,
                 max_slippage=slippage,
                 protocol=self.protocol,
             )

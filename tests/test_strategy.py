@@ -149,7 +149,7 @@ def test_close_long_on_bear_cross(strategy: GMXEMATrendWETHStrategy) -> None:
 
     assert intent.intent_type.value == "PERP_CLOSE"
     assert intent.is_long is True
-    assert intent.size_usd is None
+    assert intent.size_usd == Decimal("950")
 
 
 def test_same_hour_is_ignored(strategy: GMXEMATrendWETHStrategy) -> None:
@@ -206,7 +206,7 @@ def test_force_close(strategy: GMXEMATrendWETHStrategy) -> None:
         )
     )
     assert intent.intent_type.value == "PERP_CLOSE"
-    assert intent.size_usd is None
+    assert intent.size_usd == Decimal("100")
 
 
 def test_on_intent_executed_transitions(strategy: GMXEMATrendWETHStrategy) -> None:
@@ -232,7 +232,7 @@ def test_teardown_open_position(strategy: GMXEMATrendWETHStrategy) -> None:
     intents = strategy.generate_teardown_intents(mode=TeardownMode.SOFT)
     assert len(intents) == 1
     assert intents[0].intent_type.value == "PERP_CLOSE"
-    assert intents[0].size_usd is None
+    assert intents[0].size_usd == Decimal("321")
 
 
 def test_teardown_flat_returns_empty(strategy: GMXEMATrendWETHStrategy) -> None:
